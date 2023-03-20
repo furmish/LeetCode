@@ -13,33 +13,42 @@ public class Solution {
     }
 
     public static boolean canPlaceFlowers(int[] flowerbed, int n) {
-        if (n == 0 || flowerbed.length == 1 && flowerbed[0] == 0) {
+        if (n == 0) {
             return true;
-        } else if (flowerbed.length == 1) {
-            return false;
         }
 
         int countPossiblePlaces = 0;
 
-        if (flowerbed[1] == 0 && flowerbed[0] == 0) {
-            flowerbed[0] = 1;
-            countPossiblePlaces++;
-        }
-
-        if (flowerbed[flowerbed.length - 2] == 0 && flowerbed[flowerbed.length - 1] == 0) {
-            flowerbed[flowerbed.length - 1] = 1;
+        if (canPlant(flowerbed, 0)) {
+            plant(flowerbed, 0);
             countPossiblePlaces++;
         }
 
         for (int i = 1; i < flowerbed.length - 1; i++) {
+            if (canPlant(flowerbed, i)) {
+                plant(flowerbed, i);
+                countPossiblePlaces++;
+            }
             if (countPossiblePlaces >= n) {
                 return true;
             }
-            if  (flowerbed[i] == 0 && flowerbed[i - 1] == 0 && flowerbed[i + 1] == 0) {
-                flowerbed[i] = 1;
-                countPossiblePlaces++;
-            }
         }
-        return n <= countPossiblePlaces;
+
+        if (canPlant(flowerbed, flowerbed.length - 1)) {
+            plant(flowerbed, flowerbed.length - 1);
+            countPossiblePlaces++;
+        }
+
+        return countPossiblePlaces >= n;
+    }
+
+    private static boolean canPlant(int[] flowerbed, int i) {
+        return flowerbed[i] == 0 &&
+                (i == 0 || flowerbed[i - 1] == 0) &&
+                (i == flowerbed.length - 1 || flowerbed[i + 1] == 0);
+    }
+
+    private static void plant(int[] flowerbed, int i) {
+        flowerbed[i] = 1;
     }
 }
