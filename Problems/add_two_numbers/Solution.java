@@ -1,4 +1,4 @@
-package AddTwoNumbers;
+package add_two_numbers;
 
 import java.math.BigInteger;
 import java.util.ArrayDeque;
