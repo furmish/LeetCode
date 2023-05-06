@@ -1,4 +1,4 @@
-package valid_paretheses;
+package valid_parentheses;
 
 import java.util.Stack;
 
