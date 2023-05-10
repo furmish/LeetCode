@@ -15,22 +15,18 @@ public class Solution {
 
         char[] h = haystack.toCharArray();
         char[] n = needle.toCharArray();
-        int k;
         int j;
+        int k;
 
         for (int i = 0; i <= h.length - n.length; i++) {
             if (h[i] == n[0] && h[i + n.length - 1] == n[n.length - 1]) {
                 if (n.length < 2) {
                     return i;
                 }
-                k = i + 1;
-                j = 1;
-                while (j != n.length - 1) {
+                for (k = i + 1, j = 1; j != n.length - 1; k++, j++) {
                     if (h[k] != n[j]) {
                         break;
                     }
-                    k++;
-                    j++;
                 }
                 if (j == n.length - 1) {
                     return i;
