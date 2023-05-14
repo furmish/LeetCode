@@ -11,23 +11,15 @@ public class Solution {
     }
 
     public static boolean isAnagram(String s, String t) {
-        if (s.length() != t.length()) {
-            return false;
+        int[] letters = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            letters[s.charAt(i) - 'a']++;
         }
-
-        Map<Character, AtomicInteger> letters = new HashMap<>();
-
-        for (char c : s.toCharArray()) {
-            if (letters.containsKey(c)) {
-                letters.get(c).incrementAndGet();
-            } else {
-                letters.put(c, new AtomicInteger(1));
-            }
+        for (int i = 0; i < t.length(); i++) {
+            letters[t.charAt(i) - 'a']--;
         }
-        for (char c : t.toCharArray()) {
-            if (letters.containsKey(c) && letters.get(c).get() > 0) {
-                letters.get(c).decrementAndGet();
-            } else {
+        for (int letter : letters) {
+            if (letter != 0) {
                 return false;
             }
         }
