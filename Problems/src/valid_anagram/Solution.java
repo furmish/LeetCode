@@ -1,9 +1,5 @@
 package valid_anagram;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class Solution {
     public static void main(String[] args) {
         System.out.println(isAnagram("anagram", "nagaram"));
