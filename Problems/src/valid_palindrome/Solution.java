@@ -16,11 +16,9 @@ public class Solution {
             return true;
         }
 
-        int l = 0;
-        int r = s.length() - 1;
         char[] chars = s.toCharArray();
 
-        while (l <= r) {
+        for (int l = 0, r = s.length() - 1; l <= r; l++, r--) {
             while (!Character.isAlphabetic(chars[l]) && !Character.isDigit(chars[l]) && (l < r)) {
                 l++;
             }
@@ -30,8 +28,6 @@ public class Solution {
             if (Character.toLowerCase(chars[l])  != Character.toLowerCase(chars[r])) {
                 return false;
             }
-            l++;
-            r--;
         }
         return true;
     }
